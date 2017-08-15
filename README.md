@@ -1,7 +1,11 @@
 # gulp-starter
 my default gulp tasks
 
-edit `gulp-tasks/config.js` with your projects files path and configuration.
+## configuration
+
+edit `gulp-tasks/config.js`, each value is explained with a comment.
+
+## available tasks
 
 - `sass` : compile sass files for development
 - `sass-prod` : compile sass files for production (no sourcemap, compressed output)
