@@ -1,5 +1,6 @@
 # gulp-starter
-my default gulp tasks
+
+my default gulp tasks, to compile sass and js with es6. Browsersync is used to inject css changes and reload when js is compiled or when a html or php file is saved.
 
 ## configuration
 
