@@ -8,6 +8,10 @@ let config = require('./config.js'),
 		uglify = require('gulp-uglify');
 
 gulp.task('js', function () {
+	if(!config.jsMain) {
+		return;
+	}
+
 	return browserify(config.jsMain, {debug: true, extensions: ['es6']})
 		.transform("babelify", {presets: ["es2015"]})
 		.bundle()
@@ -15,7 +19,7 @@ gulp.task('js', function () {
 			console.log(err.message);
 			this.emit('end');
 		})
-		.pipe(source(config.jsBuildName))
+		.pipe(source(config.jsBuildName+'.js'))
 		.pipe(buffer())
 		.pipe(sourcemaps.init({loadMaps: true}))
 		.pipe(sourcemaps.write())
@@ -25,10 +29,14 @@ gulp.task('js', function () {
 
 
 gulp.task('js-prod', function () {
+	if(!config.jsMain) {
+		return;
+	}
+	
 	return browserify(config.jsMain, {debug: false, extensions: ['es6']})
 		.transform("babelify", {presets: ["es2015"]})
 		.bundle()
-		.pipe(source(config.jsBuildName))
+		.pipe(source(config.jsBuildName+'.min.js'))
 		.pipe(buffer())
 		.pipe(uglify())
 		.pipe(gulp.dest(config.jsBuildFolder));
